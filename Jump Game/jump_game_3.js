@@ -1,20 +1,15 @@
-var jump = function (nums) {
-    let steps = []
-    let farthest = 0
-    let nextStep = 0
+var canJump = function (nums) {
+    let far = 0
+    let pointer = 0
 
-    for (let i = 0; i < nums.length - 1; i++) {
-        if (i + nums[i] > nextStep + nums[nextStep]) {
-            nextStep = i
-        }
-        if (i === farthest) {
-            steps.push(nextStep)
-            farthest = nextStep + nums[nextStep]
-            if (farthest >= nums.length - 1) {
-                break
-            }
+    while (far < nums.length - 1 && pointer >= 0) {
+        const newFar = pointer + nums[pointer]
+        if (newFar > far) {
+            far = newFar
+            pointer = newFar
+        } else {
+            pointer--
         }
     }
-
-    return steps.length
+    return far >= nums.length - 1
 };

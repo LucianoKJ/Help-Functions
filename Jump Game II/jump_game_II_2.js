@@ -1,4 +1,5 @@
-var canJump = function (nums) {
+var jump = function (nums) {
+    let steps = []
     let start = 0
     let end = 0
 
@@ -9,12 +10,10 @@ var canJump = function (nums) {
                 nextStep = i
             }
         }
-        if (nextStep + nums[nextStep] <= end) {
-            return false
-        }
+        steps.push(nextStep)
         start = end + 1
         end = nextStep + nums[nextStep]
     }
 
-    return true
+    return steps.length
 };
